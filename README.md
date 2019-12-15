@@ -1,2 +1,2 @@
 # lifx
-Golang project for Lifx message parsing and creation
+Golang project for Lifx message receiving, parsing, creation, and sending.
