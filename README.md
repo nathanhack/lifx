@@ -1,10 +1,22 @@
 # lifx
 lifx is a GUI, commandline tool, and library for Lifx devices.
 
-### Tasked GUI
-Either build lifx or run with `gui` at the commandline will start a fullscreen opengl program.  It's  purpose is to manage a list of TARGET lifx devices passed in via commandline args.
+### Tasked GUI with Screensaver
 
-Example: `go run lifx.go gui d1234567891100 d1234567891200`.
+
+
+<span>
+
+
+<img src="https://user-images.githubusercontent.com/9204400/71376680-44528b00-2590-11ea-9ef7-e9da252b6f60.png" width="400" alt="GUI" title="GUI">
+
+<img src="https://user-images.githubusercontent.com/9204400/71376725-6d731b80-2590-11ea-9b00-0e79ff983d9e.png" width="400" alt="Screensaver" title="Screensaver">
+</span>
+    
+
+Running with `gui` at the commandline will start a fullscreen opengl program.  It's  purpose is to manage a list of TARGET lifx devices passed in via commandline args.
+
+Example: `go run lifx.go gui d1234567891100 d1234567891200 d1234567891300`.
 
 ### Commandline
 
