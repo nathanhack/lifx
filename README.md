@@ -28,7 +28,7 @@ go run lifx.go broadcast --label
 go run lifx.go light get d1234567891100
 go run lifx.go light getpower d1234567891100 
 go run lifx.go light setpower d1234567891100 --duration 5000 --on
-go run lifx.go light setcolor d1234567891100 --ip 10.0.0.31 --port 56700 --saturation 39 --hue 82
+go run lifx.go light setcolor d1234567891100 --ip 192.168.0.100 --port 56700 --saturation 39 --hue 82
 ```   
 
 Note: In order to determine the TARGETs use `broadcast` first to get a list.
