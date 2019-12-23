@@ -1,13 +1,12 @@
 # lifx
 lifx is a GUI, commandline tool, and library for Lifx devices.
 
+### Deps
+Golang 1.13+
+
 ### Tasked GUI with Screensaver
 
-
-
 <span>
-
-
 <img src="https://user-images.githubusercontent.com/9204400/71376680-44528b00-2590-11ea-9ef7-e9da252b6f60.png" width="400" alt="GUI" title="GUI">
 
 <img src="https://user-images.githubusercontent.com/9204400/71376725-6d731b80-2590-11ea-9b00-0e79ff983d9e.png" width="400" alt="Screensaver" title="Screensaver">
