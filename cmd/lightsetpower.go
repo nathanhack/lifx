@@ -117,7 +117,7 @@ func sendLightSetPower(ctx context.Context, out chan *server.OutBoundPayload, ta
 		tmp = "ON"
 	}
 
-	fmt.Printf("setting power to %02x at %v:%v to %v\n", targetBroadcast.Target, targetBroadcast.IP, targetBroadcast.Port, tmp)
+	fmt.Printf("Setting power to %02x at %v:%v to %v\n", targetBroadcast.Target, targetBroadcast.IP, targetBroadcast.Port, tmp)
 	localctx, done := context.WithCancel(ctx)
 	out <- &server.OutBoundPayload{
 		Data:    buffer.Bytes(),
