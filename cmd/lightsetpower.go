@@ -6,6 +6,7 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 	"fmt"
+	"github.com/nathanhack/lifx/cmd/internal"
 	"github.com/nathanhack/lifx/core/broadcast"
 	"github.com/nathanhack/lifx/core/header"
 	"github.com/nathanhack/lifx/core/messages/light"
@@ -93,7 +94,7 @@ Note if the IP and port are known include those tags then the broadcast step can
 }
 
 func sendLightSetPower(ctx context.Context, out chan *server.OutBoundPayload, targetBroadcast *broadcast.BroadcastResult, message *light.SetPower) (err error) {
-	head := header.New()
+	head := header.New(internal.GetNextSequence())
 	head.SetTarget(targetBroadcast.Target)
 	message.RequiredHeader(head, true)
 	buffer := bytes.NewBuffer([]byte{})

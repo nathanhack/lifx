@@ -6,6 +6,7 @@ import (
 	"encoding/binary"
 	"encoding/hex"
 	"fmt"
+	"github.com/nathanhack/lifx/cmd/internal"
 	"github.com/nathanhack/lifx/core/broadcast"
 	"github.com/nathanhack/lifx/core/header"
 	"github.com/nathanhack/lifx/core/messages/device"
@@ -72,7 +73,7 @@ func sendBroadcast(ctx context.Context, out chan *server.OutBoundPayload, in cha
 		hexStringsFilter[strings.ToLower(s)] = hexBytes
 	}
 
-	head := header.New()
+	head := header.New(internal.GetNextSequence())
 	message := device.GetService{}
 	message.RequiredHeader(head)
 	buffer := bytes.NewBuffer([]byte{})
@@ -156,7 +157,7 @@ func sendBroadcast(ctx context.Context, out chan *server.OutBoundPayload, in cha
 }
 
 func sendDeviceGetLabel(out chan *server.OutBoundPayload, target []byte, ip net.IP, port int) error {
-	head := header.New()
+	head := header.New(internal.GetNextSequence())
 	head.SetTarget(target)
 	message := device.GetLabel{}
 	message.RequiredHeader(head)

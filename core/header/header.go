@@ -20,11 +20,13 @@ func Decode(bytes []byte) (*Header, error) {
 	return &h, nil
 }
 
-func New() *Header {
+//New creates a new header for lifx packet. The sequence value should be one up from previous sequences (allowed to roll over).
+func New(sequence byte) *Header {
 	head := Header(make([]byte, HeaderLen))
 	head.SetProtocol(1024)    //must always
 	head.SetAddressable(true) //must always
 	head.SetSource(rand.Uint32())
+	head.SetSequence(sequence)
 	return &head
 }
 

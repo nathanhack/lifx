@@ -5,12 +5,9 @@ import (
 	"fmt"
 	"github.com/nathanhack/lifx/cmd/gui"
 	"github.com/nathanhack/lifx/core/server"
-	"strings"
-
 	"github.com/spf13/cobra"
+	"strings"
 )
-
-var guiTargets []string
 
 func init() {
 	rootCmd.AddCommand(guiCmd)
@@ -25,6 +22,7 @@ Ideally the lights should be apart of one groups.'`,
 	RunE: func(cmd *cobra.Command, args []string) (err error) {
 		fmt.Println("gui called", strings.Join(args, ","))
 		ctx, cancel := context.WithCancel(context.Background())
+		defer cancel()
 		out, in, err := server.StartUp(ctx)
 		if err != nil {
 			return err
@@ -37,7 +35,6 @@ Ideally the lights should be apart of one groups.'`,
 		}
 
 		err = g.Run()
-		cancel()
 		return
 	},
 }

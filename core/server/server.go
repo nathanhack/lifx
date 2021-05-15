@@ -56,7 +56,10 @@ func StartUp(ctx context.Context) (outBound chan *OutBoundPayload, inbound chan 
 
 			}
 			inputBytes := make([]byte, 2048)
-			connection.SetReadDeadline(time.Now().Add(500 * time.Millisecond))
+			err := connection.SetReadDeadline(time.Now().Add(500 * time.Millisecond))
+			if err != nil {
+				continue
+			}
 			length, conn, err := connection.ReadFromUDP(inputBytes)
 			if err != nil {
 				continue

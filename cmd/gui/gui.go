@@ -7,6 +7,7 @@ import (
 	"github.com/golang/freetype/truetype"
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/examples/resources/fonts"
+	"github.com/nathanhack/lifx/cmd/internal"
 	"github.com/nathanhack/lifx/core/header"
 	"github.com/nathanhack/lifx/core/messages/device"
 	"github.com/nathanhack/lifx/core/messages/light"
@@ -310,7 +311,7 @@ func (gui *GUI) updateScreenSaverLight() {
 }
 
 func sendBroadcast(outbound chan *server.OutBoundPayload) error {
-	head := header.New()
+	head := header.New(internal.GetNextSequence())
 	message := device.GetService{}
 	message.RequiredHeader(head)
 	buffer := bytes.NewBuffer([]byte{})
@@ -338,7 +339,8 @@ func sendBroadcast(outbound chan *server.OutBoundPayload) error {
 }
 
 func sendDeviceGetPower(outbound chan *server.OutBoundPayload, address *net.UDPAddr) error {
-	head := header.New()
+	head := header.New(internal.GetNextSequence())
+	head.SetAcknowledgementRequired(true)
 	message := device.GetPower{}
 	message.RequiredHeader(head)
 	buffer := bytes.NewBuffer([]byte{})
@@ -361,7 +363,7 @@ func sendDeviceGetPower(outbound chan *server.OutBoundPayload, address *net.UDPA
 }
 
 func sendLightGet(outbound chan *server.OutBoundPayload, address *net.UDPAddr) error {
-	head := header.New()
+	head := header.New(internal.GetNextSequence())
 	message := light.Get{}
 	message.RequiredHeader(head)
 	buffer := bytes.NewBuffer([]byte{})
@@ -384,7 +386,7 @@ func sendLightGet(outbound chan *server.OutBoundPayload, address *net.UDPAddr) e
 }
 
 func sendDeviceSetPower(outbound chan *server.OutBoundPayload, address *net.UDPAddr, on bool) error {
-	head := header.New()
+	head := header.New(internal.GetNextSequence())
 	message := device.SetPower{}
 	message.RequiredHeader(head, false)
 	message.SetLevel(on)
